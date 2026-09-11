@@ -1,0 +1,23 @@
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Java / Spring Boot
+**/target/
+*.jar
+*.war
+
+# Node / Vue
+**/node_modules/
+**/dist/
+npm-debug.log*
+
+# 环境与密钥（按需保留，避免泄露密码）
+**/application-dev.yml
+**/application-prod.yml
+*.env
+
+# 系统文件
+.DS_Store
+Thumbs.db

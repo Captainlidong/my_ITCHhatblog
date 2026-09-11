@@ -1,0 +1,76 @@
+package com.example.mapper;
+
+import com.example.entity.Blog;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
+
+public interface BlogMapper {
+    /**
+     * 新增
+     * @param blog
+     */
+    void insert(Blog blog);
+
+    /**
+     * 删除
+     * @param id
+     */
+    int deleteById(Integer id);
+
+    /**
+     * 修改
+     * @param blog
+     */
+    void updateById(Blog blog);
+
+    /**
+     * 根据ID查询
+     * @param id
+     * @return
+     */
+    Blog selectById(Integer id);
+
+    /**
+     * 查询所有
+     * @param blog
+     * @return
+     */
+    List<Blog> selectAll(Blog blog);
+
+    /**
+     *  查询当前博客的作者信息
+     * @param  userId
+     */
+    @Select("SELECT * FROM blog WHERE user_id = #{userId}")
+    List<Blog> selectUserBlog(Integer userId);
+
+    /**
+     * 更新阅读数
+     * @param blogId
+     */
+    @Update("update blog set read_count = read_count + 1 where id = #{blogId}")
+    void updateReadCount(Integer blogId);
+
+    /**
+     * 分页查询 用户点赞的博客
+     * @param blog
+
+     */
+    List<Blog> selectUserLike(Blog blog);
+
+    /**
+     * 分页查询 用户收藏的博客
+     * @param blog
+     * @return
+     */
+    List<Blog> selectUserCollect(Blog blog);
+
+    /**
+     * 分页查询 用户评论的博客
+     * @param blog
+     * @return
+     */
+    List<Blog> selectUserComment(Blog blog);
+}

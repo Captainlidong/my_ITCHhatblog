@@ -1,0 +1,35 @@
+package com.example.controller;
+
+import com.example.common.Result;
+import com.example.entity.Likes;
+import com.example.service.LikesService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
+
+/**
+ * 功能：点赞接口开发控制类
+ * 作者：captain_dong
+ * 日期：2024/1/26 17:44
+ */
+@RestController
+@RequestMapping("/likes")
+public class LikesController {
+    @Resource
+    LikesService likesService;
+
+    /**
+     * 功能：点赞或取消点赞
+     * @param likes
+     * @return
+     */
+    @PostMapping("/set")
+    public Result set(@RequestBody Likes likes){
+        likesService.set(likes);
+        return Result.success();
+    }
+
+}
