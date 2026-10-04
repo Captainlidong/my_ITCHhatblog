@@ -56,6 +56,7 @@
 
 ```
 my_ITCHatblog
+├── xm-blog.sql                   # 数据库建表脚本（仅表结构）
 ├── springboot/                  # 后端 Spring Boot 工程
 │   └── src/main/
 │       ├── java/com/example/
@@ -108,7 +109,17 @@ spring:
     url: jdbc:mysql://localhost:3306/xm-blog?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
 ```
 
-> ⚠️ 建表 SQL 脚本暂未包含在仓库中，需要根据 `entity` 实体类自行建表（后续计划补充）。
+3. 导入建表脚本 [`xm-blog.sql`](./xm-blog.sql)（包含全部表结构，可在 Navicat 等数据库工具中直接运行）：
+
+```bash
+mysql -uroot -p xm-blog < xm-blog.sql
+```
+
+> ℹ️ 脚本仅包含表结构，不含初始数据。普通用户可从前端注册页 `/register` 自行注册；如需登录后台管理端，请先向 `admin` 表插入一条管理员记录（密码以明文存储比对），例如：
+>
+> ```sql
+> INSERT INTO `admin` (`username`, `password`, `name`, `role`) VALUES ('admin', 'admin', '管理员', 'ADMIN');
+> ```
 
 ### 3. 启动后端
 
